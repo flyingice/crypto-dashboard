@@ -14,8 +14,7 @@ function getSheetHandler(sheetName) {
 }
 
 function getPortfolioTotal() {
-  const sheet = getSheetHandler('Portfolio');
-  return sheet.getRange("A40").getValue();
+  return getSheetHandler('Portfolio').getRangeByName('Total').getValue();
 }
 
 function getDate() {
