@@ -17,3 +17,12 @@ function getSheetHandler(sheetName) {
 
   return sheet;
 }
+
+// help to clear the terrain for debug purposes
+function clearCharts(sheetName = 'test') {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+  const charts = sheet.getCharts();
+  charts.forEach(chart => {
+    sheet.removeChart(chart);
+  });
+}
