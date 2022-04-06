@@ -9,7 +9,7 @@ function getQuotesForList(idList, currency) {
 }
 
 function getQuotes(currency = 'USD') {
-  const sheet = getSheetHandler('Portfolio');
+  const sheet = getSheetHandler(SPREADSHEET1, 'Portfolio');
 
   // retrieve a predefined list of crypto ids
   const numRows = sheet.getDataRange().getNumRows();
