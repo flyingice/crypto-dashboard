@@ -7,6 +7,7 @@ const SHEET_PORTFOLIO = 'Portfolio';  // main driven table
 const SHEET_PORTFOLIOHISTORY = 'PortfolioHistory';
 const SHEET_STATUS = 'Status';
 const SHEET_IDMAP = 'IdMap';
+const SHEET_DASHBOARD = 'Dashboard';
 
 // structure of the main driven table
 const ROW_TITLE = 1;
