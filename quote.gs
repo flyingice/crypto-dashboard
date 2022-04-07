@@ -43,7 +43,7 @@ function addNewCrypto(event) {
   const r = range.getRow();
   const c = range.getColumn();
 
-  if(!event.oldValue && sheet.getSheetName() === SHEET_PORTFOLIO && c === COLUMN_SYMBOL) {
+  if(!event.oldValue && sheet.getSheetName() === SHEET_PORTFOLIO && c === COLUMN_SYMBOL && r >= ROW_DATA) {
     // retrieve id
     const [id] = getIds([crypto]);
     if(id < 0) {
