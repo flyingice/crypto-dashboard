@@ -26,3 +26,47 @@ function updateQuotes(currency = 'USD') {
 function refresh() {
   updateQuotes('USD');
 }
+
+/* We can not use simple trigger (e.g., onEdit()) to call UrlFetch.
+ * Use installable triggers instead
+ * https://developers.google.com/apps-script/guides/triggers
+ */
+function deployTriggers() {
+  ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
+}
+
+function addNewCrypto(event) {
+  const crypto = event.value.toUpperCase();
+  const range = event.range;
+  const sheet = range.getSheet();
+
+  const r = range.getRow();
+  const c = range.getColumn();
+
+  if(sheet.getSheetName() == 'Test' && c == 5) {
+    // retrieve id
+    const [id] = getIds([crypto]);
+    if(id < 0) {
+      range.setNote('crypto symbol is not valid.');
+      return;
+    }
+    // retrieve quote
+    const [quote] = getQuotes([id]);
+
+    // calculate total amount of the given crypto
+    const width = sheet.getLastColumn();
+    range.setNote(width);
+    let sum = 0;
+    if(width > 5) {
+      const values = sheet.getRange(r, 6, 1, width - 5).getValues();
+      sum = values[0].reduce((accumulator, current) => Number(accumulator) + Number(current));
+    }
+
+    // update table
+    sheet.getRange(r, c).setValue(crypto);
+    sheet.getRange(r, c - 1).setValue(id);
+    sheet.getRange(r, c - 2).setValue(quote);
+    sheet.getRange(r, c - 3).setValue(sum);
+    sheet.getRange(r, c - 4).setValue(sum * quote);
+  }
+}
