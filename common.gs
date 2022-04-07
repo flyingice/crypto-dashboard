@@ -27,7 +27,7 @@ function getSheetHandler(spreadsheetId, sheetName = '') {
 
 // The result returned is not guaranted to be correct as
 // there may be duplicate entries in the map, e.g., LUNA, POP, SHD
-function getIdForSymbols(symbolList) {
+function getIds(symbolList) {
   const sheet = getSheetHandler(SPREADSHEET2);
   const values = sheet.getDataRange().getValues();
 
@@ -40,7 +40,7 @@ function getIdForSymbols(symbolList) {
 }
 
 // help to clear the terrain for debug purposes
-function clearCharts(sheetName = 'test') {
+function clearCharts(sheetName = 'Test') {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
   const charts = sheet.getCharts();
   charts.forEach(chart => {

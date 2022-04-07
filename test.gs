@@ -6,9 +6,9 @@ function retrieveSymbols() {
   return values.map(value => value[0]);
 }
 
-function testGetIdForSymbols() {
+function testGetIds() {
   const symbols = retrieveSymbols();
-  const ids = getIdForSymbols(symbols);
+  const ids = getIds(symbols);
 
   for(let i = 0; i < symbols.length; i++) {
     console.log(`${symbols[i]}: ${ids[i]}`);
