@@ -1,6 +1,12 @@
+function isIdMapValid() {
+  const sheet = getSheetHandler(SHEET_IDMAP);
+  // data is probably corrupted with low row count
+  return sheet.getDataRange().getNumRows() > 5000;
+}
+
 // API reference: https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap
 // Utilizing CMC ID instead of cryptocurrency symbols is the recommended way to interact with other endpoints
-function getIdMap() {
+function buildIdMap() {
   const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map';
   const reply = JSON.parse(UrlFetchApp.fetch(url, PARAMS).getContentText());
 
@@ -18,6 +24,11 @@ function getIdMap() {
 // The result returned is not guaranted to be correct as
 // there may be duplicate entries in the map, e.g., LUNA, POP, SHD
 function getIds(symbolList) {
+  if(!isIdMapValid()) {
+    console.log('building id map...');
+    buildIdMap();
+  }
+
   const sheet = getSheetHandler(SHEET_IDMAP);
   const values = sheet.getDataRange().getValues();
 
