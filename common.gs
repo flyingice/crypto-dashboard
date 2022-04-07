@@ -16,3 +16,20 @@ const COLUMN_ID = COLUMN_SYMBOL - 1;
 const COLUMN_AMOUNT = COLUMN_SYMBOL - 2;
 const COLUMN_QUOTE = COLUMN_SYMBOL - 3;
 const COLUMN_POSITION = COLUMN_SYMBOL - 4;
+
+function getSheetHandler(sheetName = '') {
+  const spreadSheet = SpreadsheetApp.getActive();
+
+  let sheet;
+  if(!sheetName) {
+    sheet = spreadSheet.getActiveSheet();
+  } else {
+    sheet = spreadSheet.getSheetByName(sheetName);
+    // create if it doesn't exist
+    if (!sheet) {
+      sheet = spreadSheet.insertSheet(sheetName);
+    }
+  }
+
+  return sheet;
+}
