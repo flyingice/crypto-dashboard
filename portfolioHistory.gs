@@ -1,5 +1,6 @@
 function getPortfolioTotal() {
-  return getSheetHandler(SPREADSHEET1, 'Portfolio').getRange("E1").getValue();
+  const sheet = getSheetHandler(SPREADSHEET, SHEET_PORTFOLIO);
+  return sheet.getRange(ROW_TITLE, COLUMN_SYMBOL).getValue();
 }
 
 function getDate() {
@@ -9,7 +10,6 @@ function getDate() {
 
 // The script should run after the completion of quote.gs
 function appendHistory() {
-  const sheet = getSheetHandler(SPREADSHEET1, 'PortfolioHistory');
-  const numRows = sheet.getDataRange().getNumRows();
-  sheet.getRange(numRows + 1, 1, 1, 2).setValues([[getDate(), getPortfolioTotal()]]);
+  const sheet = getSheetHandler(SPREADSHEET, SHEET_PORTFOLIOHISTORY);
+  sheet.getRange(sheet.getLastRow() + 1, 1, 1, 2).setValues([[getDate(), getPortfolioTotal()]]);
 }

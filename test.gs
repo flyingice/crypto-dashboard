@@ -1,7 +1,6 @@
 function retrieveSymbols() {
-  const sheet = getSheetHandler(SPREADSHEET1, "Portfolio");
-  const numRows = sheet.getDataRange().getNumRows();
-  const values = sheet.getRange(2, 5, numRows - 1, 1).getValues();
+  const sheet = getSheetHandler(SPREADSHEET, SHEET_PORTFOLIO);
+  const values = sheet.getRange(ROW_DATA, COLUMN_SYMBOL, sheet.getLastRow() - ROW_DATA + 1, 1).getValues();
 
   return values.map(value => value[0]);
 }
@@ -15,3 +14,8 @@ function testGetIds() {
   }
 }
 
+function testGetQuotes() {
+  const idList = [52];
+  const [quote] = getQuotes(idList);
+  console.log(quote);
+}
