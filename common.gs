@@ -3,9 +3,6 @@ const PARAMS = {
   headers: { 'X-CMC_PRO_API_KEY': '' }, // api key here
 };
 
-// extracted from the url: https://docs.google.com/spreadsheets/d/[id]/edit#gid=[gid]
-const SPREADSHEET = '139SH2ul5PoSAtZ5jy75MWqnHVWpeELCXA20pJd3g6lM';
-
 const SHEET_PORTFOLIO = 'Portfolio';  // main driven table
 const SHEET_PORTFOLIOHISTORY = 'PortfolioHistory';
 const SHEET_IDMAP = 'IdMap';
@@ -19,9 +16,8 @@ const COLUMN_AMOUNT = COLUMN_SYMBOL - 2;
 const COLUMN_QUOTE = COLUMN_SYMBOL - 3;
 const COLUMN_POSITION = COLUMN_SYMBOL - 4;
 
-function getSheetHandler(spreadsheetId, sheetName = '') {
-  // don't call SpreadsheetApp.getActive() as the script is time-triggered
-  const spreadSheet = SpreadsheetApp.openById(spreadsheetId);
+function getSheetHandler(sheetName = '') {
+  const spreadSheet = SpreadsheetApp.getActive();
 
   let sheet;
   if(!sheetName) {
@@ -40,7 +36,7 @@ function getSheetHandler(spreadsheetId, sheetName = '') {
 // The result returned is not guaranted to be correct as
 // there may be duplicate entries in the map, e.g., LUNA, POP, SHD
 function getIds(symbolList) {
-  const sheet = getSheetHandler(SPREADSHEET, SHEET_IDMAP);
+  const sheet = getSheetHandler(SHEET_IDMAP);
   const values = sheet.getDataRange().getValues();
 
   const ids = symbolList.map(crypto => {
@@ -53,7 +49,7 @@ function getIds(symbolList) {
 
 // help to clear the terrain for debug purposes
 function clearCharts(sheetName) {
-  const sheet = getSheetHandler(SPREADSHEET);
+  const sheet = getSheetHandler();
   const charts = sheet.getCharts();
   charts.forEach(chart => {
     sheet.removeChart(chart);

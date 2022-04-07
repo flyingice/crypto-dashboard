@@ -9,7 +9,7 @@ function getQuotes(idList, currency = 'USD') {
 }
 
 function updateQuotes(currency = 'USD') {
-  const sheet = getSheetHandler(SPREADSHEET, SHEET_PORTFOLIO);
+  const sheet = getSheetHandler(SHEET_PORTFOLIO);
 
   // retrieve a predefined list of crypto ids
   const values = sheet.getRange(ROW_DATA, COLUMN_ID, sheet.getLastRow() - ROW_DATA + 1, 1).getValues();
@@ -31,7 +31,7 @@ function refresh() {
  * https://developers.google.com/apps-script/guides/triggers
  */
 function deployTriggers() {
-  ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.openById(SPREADSHEET)).onEdit().create();
+  ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
 }
 
 // automatically update row data when inserting new crypto

@@ -5,7 +5,7 @@ function getDate() {
 
 // The script should run after the completion of quote.gs
 function appendHistory() {
-  const sheet = getSheetHandler(SPREADSHEET, SHEET_PORTFOLIOHISTORY);
+  const sheet = getSheetHandler(SHEET_PORTFOLIOHISTORY);
 
   const date = getDate();
   const total = sheet.getRange("B1").getValue();

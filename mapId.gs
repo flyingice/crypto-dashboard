@@ -10,7 +10,7 @@ function getIdMap() {
   });
 
   // write to the destination sheet
-  const sheet = getSheetHandler(SPREADSHEET, SHEET_IDMAP);
+  const sheet = getSheetHandler(SHEET_IDMAP);
   // row and column index both starts from 1
   sheet.getRange(1, 1, values.length, 2).setValues(values);
 }
