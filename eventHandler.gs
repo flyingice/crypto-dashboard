@@ -1,12 +1,3 @@
-/* We can not use simple trigger (e.g., onEdit()) to call UrlFetch.
- * Use installable triggers instead
- * https://developers.google.com/apps-script/guides/triggers
- */
-function deployTriggers() {
-  ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
-}
-
-// automatically update row data when inserting new crypto
 function addNewCrypto(event) {
   const crypto = event.value.toUpperCase(); // normalize crypto symbol
   const range = event.range;
