@@ -5,6 +5,7 @@ const PARAMS = {
 
 const SHEET_PORTFOLIO = 'Portfolio';  // main driven table
 const SHEET_PORTFOLIOHISTORY = 'PortfolioHistory';
+const SHEET_STATUS = 'Status';
 const SHEET_IDMAP = 'IdMap';
 
 // structure of the main driven table
