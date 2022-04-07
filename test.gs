@@ -13,3 +13,13 @@ function testGetIds() {
     console.log(`${symbols[i]}: ${ids[i]}`);
   }
 }
+
+function testGetQuotes() {
+  const symbols = retrieveSymbols();
+  const ids = getIds(symbols);
+  // fill in empty string on purpose
+  const culprit = ['', '', '4687', ''];
+  culprit.forEach(id => ids.push(id));
+  const quotes = getQuotes(ids);
+  console.log(quotes);
+}
