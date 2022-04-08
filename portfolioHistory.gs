@@ -1,6 +1,5 @@
 function getDate_() {
-  const [date] = new Date().toISOString().split('T');
-  return date;
+  return new Date().toISOString();
 }
 
 function retrieveStatus_() {
