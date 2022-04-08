@@ -8,7 +8,7 @@ function onOpen(event) {
     .addToUi();
 }
 
-function addNewCrypto(event) {
+function addNewCrypto_(event) {
   const value = event.value
   const range = event.range;
   const sheet = range.getSheet();

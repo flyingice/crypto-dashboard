@@ -15,7 +15,7 @@ function deployTriggers_() {
 
   // refresh dashboard on daily basis
   ScriptApp.newTrigger('refreshDashboard').timeBased().everyDays(1).atHour(1).create();
-  
+
   // automatically update row data when inserting new crypto
-  ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
+  ScriptApp.newTrigger('addNewCrypto_').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();
 }

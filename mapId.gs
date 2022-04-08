@@ -6,7 +6,7 @@ function isidMapValid_() {
 
 // API reference: https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap
 // Utilizing CMC ID instead of cryptocurrency symbols is the recommended way to interact with other endpoints
-function buildIdMap() {
+function buildIdMap_() {
   const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map';
   const reply = JSON.parse(UrlFetchApp.fetch(url, PARAMS).getContentText());
 
@@ -26,7 +26,7 @@ function buildIdMap() {
 function getIds_(symbolList) {
   if(!isidMapValid_()) {
     console.log('building id map...');
-    buildIdMap();
+    buildIdMap_();
   }
 
   const sheet = getSheetHandler_(SHEET_IDMAP);
