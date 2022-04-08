@@ -32,10 +32,6 @@ function addNewCrypto(event) {
     sheet.getRange(r, COLUMN_ID).setValue(id);
     sheet.getRange(r, COLUMN_AMOUNT).setValue(`=SUM(${getNextChar_('A', COLUMN_SYMBOL)}${r}:${r})`);
     sheet.getRange(r, COLUMN_QUOTE).setValue(quote);
-    // update position
-    const column = getNextChar_('A', COLUMN_POSITION - 1);
-    const sourceRange = sheet.getRange(`${column}2`);
-    const destRange = sheet.getRange(`${column}2:${column}`);
-    sourceRange.autoFill(destRange, SpreadsheetApp.AutoFillSeries);
+    sheet.getRange(r,  COLUMN_POSITION).setValue(`=MULTIPLY(${getNextChar_('A', COLUMN_QUOTE - 1)}${r},${getNextChar_('A', COLUMN_AMOUNT - 1)}${r})`);
   }
 }
