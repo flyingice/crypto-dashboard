@@ -18,7 +18,7 @@ const COLUMN_AMOUNT = COLUMN_SYMBOL - 2;
 const COLUMN_QUOTE = COLUMN_SYMBOL - 3;
 const COLUMN_POSITION = COLUMN_SYMBOL - 4;
 
-function getSheetHandler(sheetName = '') {
+function getSheetHandler_(sheetName = '') {
   const spreadSheet = SpreadsheetApp.getActive();
 
   let sheet;

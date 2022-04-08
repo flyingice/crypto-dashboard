@@ -17,13 +17,13 @@ function addNewCrypto(event) {
 
   if(!event.oldValue && sheet.getSheetName() === SHEET_PORTFOLIO && c === COLUMN_SYMBOL && r >= ROW_DATA) {
     // retrieve id
-    const [id] = getIds([crypto]);
+    const [id] = getIds_([crypto]);
     if(id < 0) {
       range.setNote('invalid crypto symbol');
       return;
     }
     // retrieve quote
-    const [quote] = getQuotes([id]);
+    const [quote] = getQuotes_([id]);
     // calculate total amount of the given crypto
     const width = sheet.getLastColumn();
     let amount = 0;

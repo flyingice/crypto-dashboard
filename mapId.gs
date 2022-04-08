@@ -1,5 +1,5 @@
-function isIdMapValid() {
-  const sheet = getSheetHandler(SHEET_IDMAP);
+function isidMapValid_() {
+  const sheet = getSheetHandler_(SHEET_IDMAP);
   // data is probably corrupted with low row count
   return sheet.getDataRange().getNumRows() > 5000;
 }
@@ -16,20 +16,20 @@ function buildIdMap() {
   });
 
   // write to the destination sheet
-  const sheet = getSheetHandler(SHEET_IDMAP);
+  const sheet = getSheetHandler_(SHEET_IDMAP);
   // row and column index both starts from 1
   sheet.getRange(1, 1, values.length, 2).setValues(values);
 }
 
 // The result returned is not guaranted to be correct as
 // there may be duplicate entries in the map, e.g., LUNA, POP, SHD
-function getIds(symbolList) {
-  if(!isIdMapValid()) {
+function getIds_(symbolList) {
+  if(!isidMapValid_()) {
     console.log('building id map...');
     buildIdMap();
   }
 
-  const sheet = getSheetHandler(SHEET_IDMAP);
+  const sheet = getSheetHandler_(SHEET_IDMAP);
   const values = sheet.getDataRange().getValues();
 
   const ids = symbolList.map(crypto => {

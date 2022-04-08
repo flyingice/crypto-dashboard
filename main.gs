@@ -4,11 +4,11 @@
 
 // run this function to install triggers and the dashboard
 function installDashboard() {
-  deployTriggers();
-  drawCharts();
+  deployTriggers_();
+  drawCharts_();
 }
 
 function refreshDashboard() {
-  updateQuotes('USD');
-  appendHistory();
+  updateQuotes_('USD');
+  appendHistory_();
 }

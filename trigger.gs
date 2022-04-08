@@ -1,4 +1,4 @@
-function deleteTriggers() {
+function deleteTriggers_() {
   const triggers = ScriptApp.getProjectTriggers();
   triggers.forEach(trigger => ScriptApp.deleteTrigger(trigger));
 }
@@ -7,8 +7,8 @@ function deleteTriggers() {
  * Use installable triggers instead
  * https://developers.google.com/apps-script/guides/triggers
  */
-function deployTriggers() {
-  deleteTriggers();
+function deployTriggers_() {
+  deleteTriggers_();
 
   // rebuild id map on montly basis
   ScriptApp.newTrigger('buildIdMap').timeBased().onMonthDay(1).atHour(0).create();

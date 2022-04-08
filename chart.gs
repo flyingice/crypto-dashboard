@@ -1,15 +1,15 @@
 // clear the terrain
-function clearCharts(sheetName) {
-  const sheet = getSheetHandler(sheetName);
+function clearCharts_(sheetName) {
+  const sheet = getSheetHandler_(sheetName);
   const charts = sheet.getCharts();
   charts.forEach(chart => {
     sheet.removeChart(chart);
   });
 }
 
-function drawPortfolioChart() {
-  origin = getSheetHandler(SHEET_PORTFOLIO);
-  dest = getSheetHandler(SHEET_DASHBOARD);
+function drawPortfolioChart_() {
+  origin = getSheetHandler_(SHEET_PORTFOLIO);
+  dest = getSheetHandler_(SHEET_DASHBOARD);
 
   // total position
   let builder = dest.newChart().asPieChart();
@@ -32,14 +32,14 @@ function drawPortfolioChart() {
   dest.insertChart(builder.build());
 }
 
-function drawStatusChart() {
+function drawStatusChart_() {
   // API doesn't support Charts.ChartType.SCORECARD
   // https://developers.google.com/apps-script/reference/charts/chart-type.html
 }
 
-function drawHistoryChart() {
-  origin = getSheetHandler(SHEET_PORTFOLIOHISTORY);
-  dest = getSheetHandler(SHEET_DASHBOARD);
+function drawHistoryChart_() {
+  origin = getSheetHandler_(SHEET_PORTFOLIOHISTORY);
+  dest = getSheetHandler_(SHEET_DASHBOARD);
 
   // total position
   let builder = dest.newChart().asLineChart();
@@ -56,10 +56,10 @@ function drawHistoryChart() {
   dest.insertChart(builder.build());
 }
 
-function drawCharts() {
-  clearCharts(SHEET_DASHBOARD);
+function drawCharts_() {
+  clearCharts_(SHEET_DASHBOARD);
 
-  drawPortfolioChart();
-  drawStatusChart();
-  drawHistoryChart();
+  drawPortfolioChart_();
+  drawStatusChart_();
+  drawHistoryChart_();
 }
