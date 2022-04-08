@@ -2,8 +2,9 @@ function onOpen(event) {
   // create drop-down menu on the UI
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('Dashboard')
-    .addItem('Install', 'installDashboard')
     .addItem('Refresh', 'refreshDashboard')
+    .addItem('Install', 'installDashboard')
+    .addItem('Uninstall', 'uninstallDashboard')
     .addToUi();
 }
 

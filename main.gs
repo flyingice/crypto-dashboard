@@ -8,6 +8,11 @@ function installDashboard() {
   drawCharts_();
 }
 
+function uninstallDashboard() {
+  deleteTriggers_();
+  clearCharts_(SHEET_DASHBOARD);
+}
+
 function refreshDashboard() {
   updateQuotes_('USD');
   appendHistory_();
