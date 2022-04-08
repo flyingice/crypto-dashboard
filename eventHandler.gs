@@ -1,3 +1,12 @@
+function onOpen(event) {
+  // create drop-down menu on the UI
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('Dashboard')
+    .addItem('Install', 'installDashboard')
+    .addItem('Refresh', 'refreshDashboard')
+    .addToUi();
+}
+
 function addNewCrypto(event) {
   const crypto = event.value.toUpperCase(); // normalize crypto symbol
   const range = event.range;

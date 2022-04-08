@@ -10,13 +10,11 @@ function deleteTriggers() {
 function deployTriggers() {
   deleteTriggers();
 
-  const launchHour = 0;
   // rebuild id map on montly basis
-  ScriptApp.newTrigger('buildIdMap').timeBased().onMonthDay(1).create();
-  // refresh quote on daily basis
-  ScriptApp.newTrigger('refresh').timeBased().everyDays(1).atHour(launchHour).create();
-  // update portfolio history following quotes refresh
-  ScriptApp.newTrigger('appendHistory').timeBased().everyDays(1).atHour(launchHour + 1).create();
+  ScriptApp.newTrigger('buildIdMap').timeBased().onMonthDay(1).atHour(0).create();
+
+  // refresh dashboard on daily basis
+  ScriptApp.newTrigger('refreshDashboard').timeBased().everyDays(1).atHour(1).create();
   
   // automatically update row data when inserting new crypto
   ScriptApp.newTrigger('addNewCrypto').forSpreadsheet(SpreadsheetApp.getActive()).onEdit().create();

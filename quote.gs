@@ -23,7 +23,3 @@ function updateQuotes(currency = 'USD') {
   const res = quotes.map(quote => [quote]);
   sheet.getRange(ROW_DATA, COLUMN_QUOTE, res.length, 1).setValues(res);
 }
-
-function refresh() {
-  updateQuotes('USD');
-}
