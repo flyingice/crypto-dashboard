@@ -34,3 +34,8 @@ function getSheetHandler_(sheetName = '') {
 
   return sheet;
 }
+
+// get the char at the nth position following letter a
+function getNextChar_(a, n) {
+  return String.fromCharCode(a.charCodeAt() + n);
+}

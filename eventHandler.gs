@@ -26,19 +26,16 @@ function addNewCrypto(event) {
     }
     // retrieve quote
     const [quote] = getQuotes_([id]);
-    // calculate total amount of the given crypto
-    const width = sheet.getLastColumn();
-    let amount = 0;
-    if(width > COLUMN_SYMBOL) {
-      const values = sheet.getRange(r, COLUMN_SYMBOL + 1, 1, width - COLUMN_SYMBOL).getValues();
-      amount = values[0].reduce((accumulator, current) => Number(accumulator) + Number(current));
-    }
 
     // update table
     sheet.getRange(r, COLUMN_SYMBOL).setValue(crypto);
     sheet.getRange(r, COLUMN_ID).setValue(id);
-    sheet.getRange(r, COLUMN_AMOUNT).setValue(amount);
+    sheet.getRange(r, COLUMN_AMOUNT).setValue(`=SUM(${getNextChar_('A', COLUMN_SYMBOL)}${r}:${r})`);
     sheet.getRange(r, COLUMN_QUOTE).setValue(quote);
-    sheet.getRange(r, COLUMN_POSITION).setValue(amount * quote);
+    // update position
+    const column = getNextChar_('A', COLUMN_POSITION - 1);
+    const sourceRange = sheet.getRange(`${column}2`);
+    const destRange = sheet.getRange(`${column}2:${column}`);
+    sourceRange.autoFill(destRange, SpreadsheetApp.AutoFillSeries);
   }
 }
