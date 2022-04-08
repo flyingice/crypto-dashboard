@@ -8,14 +8,16 @@ function onOpen(event) {
 }
 
 function addNewCrypto(event) {
-  const crypto = event.value.toUpperCase(); // normalize crypto symbol
+  const value = event.value
   const range = event.range;
   const sheet = range.getSheet();
 
   const r = range.getRow();
   const c = range.getColumn();
 
-  if(!event.oldValue && sheet.getSheetName() === SHEET_PORTFOLIO && c === COLUMN_SYMBOL && r >= ROW_DATA) {
+  if(value && !event.oldValue && sheet.getSheetName() === SHEET_PORTFOLIO && c === COLUMN_SYMBOL && r >= ROW_DATA) {
+    // normalize crypto symbol
+    const crypto = value.toUpperCase();
     // retrieve id
     const [id] = getIds_([crypto]);
     if(id < 0) {
