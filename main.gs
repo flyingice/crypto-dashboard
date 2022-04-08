@@ -10,10 +10,10 @@ function installDashboard() {
 
 function uninstallDashboard() {
   deleteTriggers_();
-  clearCharts_(SHEET_DASHBOARD);
+  clearCharts_();
 }
 
 function refreshDashboard() {
-  updateQuotes_('USD');
+  updateQuotes_();
   appendHistory_();
 }

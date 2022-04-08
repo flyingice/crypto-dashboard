@@ -1,6 +1,6 @@
 // clear the terrain
-function clearCharts_(sheetName) {
-  const sheet = getSheetHandler_(sheetName);
+function clearCharts_() {
+  const sheet = getSheetHandler_(SHEET_DASHBOARD);
   const charts = sheet.getCharts();
   charts.forEach(chart => {
     sheet.removeChart(chart);
@@ -57,7 +57,7 @@ function drawHistoryChart_() {
 }
 
 function drawCharts_() {
-  clearCharts_(SHEET_DASHBOARD);
+  clearCharts_();
 
   drawPortfolioChart_();
   drawStatusChart_();
